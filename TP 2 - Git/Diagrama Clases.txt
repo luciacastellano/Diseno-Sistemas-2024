@@ -1,0 +1,71 @@
+@startuml
+left to right direction
+class Categoria{
++nombre
++descrip
+}
+class Capacitacion {
+    +idCapac
+    + titulo
+    + descrip
+}
+class Archivo{
+    +idCapac
+    +nombreArchivo
+    +TipoArchivo
+}
+class Cuestionario{
+    +idCapac
+    +tiempo
+}
+
+class Pregunta{
++idCapac
++pregunta
+}
+Categoria "1"-- "0..*"Capacitacion: asociación
+Capacitacion "1"-- "0..*"Archivo: asociación
+EmpleaCapac "1"-- "0..*" Cuestionario : asociación
+Capacitacion "1"-- "0..*" Cuestionario : asociación
+Cuestionario "1"-- "*" Pregunta : asociación
+
+
+class usuario{
++UserName
++Contrasena
+}
+class Empresa{
++nombre
+}
+class UEmpresa{
++nrousuario
+}
+class UEmpleado{
++Legajo
+}
+class UAdmin{
++nroAdmin
+}
+usuario <|-- UEmpresa
+usuario <|-- UEmpleado
+usuario <|-- UAdmin
+
+Empresa "1"-- "0..*" UEmpresa : asociación
+
+class EmpleaCapac{
++Legajo
++idCapac
++fechalim
+}
+
+class Progreso{
++fecha
++GradoAvance
+}
+EmpleaCapac "1"-- "0..*" Progreso : asociación
+UEmpleado "1"-- "0..*" EmpleaCapac : asociación
+Capacitacion "1"-- "0..*" EmpleaCapac : asociación
+
+
+@startuml
+

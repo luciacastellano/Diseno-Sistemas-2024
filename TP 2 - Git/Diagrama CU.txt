@@ -1,0 +1,25 @@
+@startuml
+left to right direction
+
+actor UsuarioAdmin
+actor UsuarioEmpresa
+actor UsuarioEmpleado
+
+rectangle "Sistema Capacitate" {
+    UsuarioAdmin --> (Crear usuario 'Empresa')
+    UsuarioAdmin --> (Crear usuario 'Administrador')
+    UsuarioAdmin --> (Crear nueva Capacitacion)
+    UsuarioAdmin --> (Cargar titulo, descripcion, archivos, material y cuestionario)
+    UsuarioEmpresa --> (Crear usuario 'Empleado')
+    UsuarioEmpresa --> (Mostrar capacitaciones disponibles)
+    UsuarioEmpleado --> (Mostrar capacitaciones asignadas)
+    UsuarioEmpleado --> (Realizar capacitacion) 
+    UsuarioEmpleado --> (Habilitar cuestionario)
+    UsuarioEmpleado --> (Validar usuario y contraseña)
+    UsuarioEmpresa --> (Validar usuario y contraseña)
+    UsuarioAdmin --> (Validar usuario y contraseña)
+}
+
+(Realizar capacitacion) .> (Habilitar cuestionario) : <<extend>>
+
+@enduml

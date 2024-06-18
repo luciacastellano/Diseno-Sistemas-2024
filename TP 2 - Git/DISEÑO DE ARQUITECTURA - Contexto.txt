@@ -1,0 +1,26 @@
+DISEÑO DE ARQUITECTURA -> Contexto
+@startuml
+!include <C4/C4_Container>
+
+
+
+Person(personAlias, "Empleado", "Persona que realiza las capacitaciones.")
+Person(empresaAlias, "Empresa", "Empresa que contrata el servicio Capacitate.")
+Person(administradorAlias, "Administrador", "Administrador de la empresa Capacitate.")
+
+System_Boundary(sistemaCapacitate, "Sistema Capacitate") {
+System(systemAlias, "Sistema Web", "Permite cargar capacitaciones, asignarlas y realizarlas.")
+ContainerDb(basedatosAlias, "Base de Datos", "MySQL", "Datos de usuarios y capacitaciones.")
+}
+System_Ext(extSystemAlias, "Enviar Correo", "Recordatorio de la capacitación.")
+
+
+Rel(personAlias, systemAlias, "Realiza Capacitación.")
+Rel(empresaAlias, systemAlias, "Usa y modifica.", "Crea empleados, asigna capacitaciones.")
+Rel(administradorAlias, systemAlias, "Modifica.", "Crea empresas y capacitaciones.")
+
+Rel(systemAlias, basedatosAlias, "Consulta y Modifica")
+Rel_U(systemAlias, extSystemAlias, "Hacer aviso.", "")
+Rel_U(extSystemAlias, personAlias, "Notifica.")
+
+@enduml
